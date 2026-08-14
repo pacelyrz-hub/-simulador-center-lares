@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0757b8">
+<meta name="description" content="Simulador Habitacional Center Lares">
+<title>Simulador Habitacional | Center Lares</title>
+<style>
+*{box-sizing:border-box} :root{--blue:#0757b8;--dark:#053b80;--soft:#eaf3ff;--text:#142033;--muted:#64748b;--border:#d9e2ef;--shadow:0 18px 45px rgba(5,59,128,.12)}
+body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:linear-gradient(180deg,#eef6ff 0,#f8fbff 42%,#fff 100%);min-height:100vh}.page{width:100%;max-width:760px;margin:auto;padding:18px 14px 32px}.hero{background:linear-gradient(135deg,var(--dark),var(--blue));color:#fff;border-radius:24px;padding:24px 20px;box-shadow:var(--shadow);margin-bottom:16px}.brand{font-weight:800;font-size:25px}.brand span{opacity:.75;font-weight:500}.hero h1{margin:18px 0 6px;font-size:clamp(26px,7vw,38px);line-height:1.08}.hero p{margin:0;opacity:.9;line-height:1.5;font-size:15px}.card{background:#fff;border:1px solid rgba(217,226,239,.9);border-radius:22px;padding:20px;box-shadow:var(--shadow)}.section-title{margin:0 0 16px;font-size:18px;font-weight:800}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field.full{grid-column:1/-1}label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}input{width:100%;border:1px solid var(--border);border-radius:14px;padding:14px 13px;font-size:16px;color:var(--text);background:#fff;outline:none}input:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(7,87,184,.1)}.fgts{margin:16px 0 18px;padding:13px 14px;border:1px solid #cfe0f6;border-radius:14px;background:var(--soft);font-size:13px;line-height:1.45}.fgts strong{color:var(--dark)}button{width:100%;border:0;border-radius:15px;padding:16px;background:linear-gradient(135deg,var(--blue),#0875e8);color:#fff;font-size:16px;font-weight:800;cursor:pointer;min-height:52px;box-shadow:0 10px 24px rgba(7,87,184,.22)}.result{display:none;margin-top:16px;border:1px solid #cfe0f6;border-radius:20px;padding:18px;background:linear-gradient(180deg,#f7fbff,#fff)}.result.show{display:block}.result h2{margin:0 0 14px;font-size:20px}.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{padding:13px;border:1px solid var(--border);border-radius:14px;background:#fff}.metric span{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}.metric strong{display:block;font-size:17px}.highlight{background:var(--blue)!important;border-color:var(--blue)!important;color:#fff}.highlight span{color:rgba(255,255,255,.78)}.whatsapp{display:flex;justify-content:center;align-items:center;text-decoration:none;margin-top:14px;border-radius:14px;padding:14px;background:#128c49;color:#fff;font-weight:800;min-height:52px}.small{color:var(--muted);font-size:11px;line-height:1.5;margin-top:14px}.error{color:#b42318;font-size:12px;margin:8px 0;display:none}@media(max-width:560px){.page{padding:12px 10px 26px}.hero{border-radius:20px;padding:22px 18px}.card{border-radius:20px;padding:17px}.grid,.result-grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
+</style>
+</head>
+<body>
+<main class="page">
+<section class="hero"><div class="brand">CENTER LARES <span>Construtora</span></div><h1>Simulador Habitacional</h1><p>Faça uma estimativa rápida do seu financiamento e veja uma parcela aproximada.</p></section>
+<section class="card"><h2 class="section-title">Preencha seus dados</h2>
+<form id="form" novalidate>
+<div class="grid">
+<div class="field full"><label for="nome">Nome completo</label><input id="nome" type="text" autocomplete="name" placeholder="Digite seu nome" required></div>
+<div class="field"><label for="whatsapp">WhatsApp</label><input id="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(66) 99999-9999" required></div>
+<div class="field"><label for="idade">Idade</label><input id="idade" type="number" min="18" max="100" inputmode="numeric" placeholder="Ex.: 35" required></div>
+<div class="field"><label for="renda">Renda bruta familiar</label><input id="renda" type="text" inputmode="decimal" placeholder="R$ 0,00" required></div>
+<div class="field"><label for="imovel">Valor do imóvel</label><input id="imovel" type="text" inputmode="decimal" placeholder="R$ 0,00" required></div>
+</div>
+<div class="fgts"><strong>FGTS:</strong> para esta simulação, o cliente é considerado automaticamente <strong>cotista com mais de 3 anos de FGTS</strong>.</div>
+<div id="error" class="error" role="alert"></div><button type="submit">FINALIZAR SIMULAÇÃO</button>
+</form>
+<div id="resultado" class="result" aria-live="polite"><h2>Resultado da simulação</h2><div class="result-grid">
+<div class="metric"><span>Valor do imóvel</span><strong id="rImovel">—</strong></div><div class="metric"><span>Valor estimado financiado</span><strong id="rFinanciado">—</strong></div><div class="metric"><span>Taxa estimada</span><strong id="rTaxa">—</strong></div><div class="metric highlight"><span>Parcela aproximada</span><strong id="rParcela">—</strong></div>
+</div><a id="whats" class="whatsapp" href="#" target="_blank" rel="noopener">CHAMAR A CENTER LARES NO WHATSAPP</a><div class="small">Estimativa informativa. A aprovação, taxa efetiva, valor financiado e condições finais dependem da análise de crédito e das regras vigentes da instituição financeira.</div></div>
+</section></main>
+<script>
+const form=document.getElementById('form'),err=document.getElementById('error'),out=document.getElementById('resultado');
+const brl=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(v);
+function money(v){let n=Number(String(v||'').replace(/\s/g,'').replace(/R\$/gi,'').replace(/\./g,'').replace(',','.'));return Number.isFinite(n)?n:0}
+function mask(el){el.addEventListener('input',()=>{let d=el.value.replace(/\D/g,'');el.value=d?brl(Number(d)/100):''})}
+mask(renda);mask(imovel);
+whatsapp.addEventListener('input',e=>{let d=e.target.value.replace(/\D/g,'').slice(0,11);if(d.length>10)e.target.value=d.replace(/(\d{2})(\d{5})(\d{4})/,'($1) $2-$3');else if(d.length>6)e.target.value=d.replace(/(\d{2})(\d{4})(\d{0,4})/,'($1) $2-$3');else if(d.length>2)e.target.value=d.replace(/(\d{2})(\d{0,5})/,'($1) $2');else e.target.value=d});
+form.addEventListener('submit',e=>{e.preventDefault();err.style.display='none';let n=nome.value.trim(),w=whatsapp.value.trim(),i=Number(idade.value),r=money(renda.value),v=money(imovel.value);if(!n||!w||!i||r<=0||v<=0){err.textContent='Preencha todos os campos corretamente para finalizar a simulação.';err.style.display='block';return}if(i<18||i>100){err.textContent='Informe uma idade entre 18 e 100 anos.';err.style.display='block';return}
+let acres=r<=11000?.25:.4286,fin=v*(1+acres);fin=Math.min(fin,v);let taxaAnual=r<=11000?.10:.115,taxaMensal=Math.pow(1+taxaAnual,1/12)-1,prazo=360,parcela=fin*(taxaMensal*Math.pow(1+taxaMensal,prazo))/(Math.pow(1+taxaMensal,prazo)-1);
+rImovel.textContent=brl(v);rFinanciado.textContent=brl(fin);rTaxa.textContent=(taxaAnual*100).toFixed(2).replace('.',',')+'% a.a.';rParcela.textContent=brl(parcela)+' / mês';let msg=`Olá, Center Lares! Fiz uma simulação habitacional. Nome: ${n}. WhatsApp: ${w}. Idade: ${i}. Renda: ${brl(r)}. Valor do imóvel: ${brl(v)}. Valor estimado financiado: ${brl(fin)}. Parcela aproximada: ${brl(parcela)}.`;whats.href='https://wa.me/5566996894542?text='+encodeURIComponent(msg);out.classList.add('show');out.scrollIntoView({behavior:'smooth',block:'start'})});
+</script></body></html>
