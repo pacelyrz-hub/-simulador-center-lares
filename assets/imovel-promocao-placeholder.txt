@@ -1,0 +1,1 @@
+Foto principal do imóvel promocional incorporada diretamente no index.html.
